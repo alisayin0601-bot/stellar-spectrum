@@ -7,14 +7,13 @@ import { Emoji } from './emoji'
 
 export function HomeHero() {
   const { t } = useLang()
+  const featured = TOPICS.filter((tp) => tp.featured)
 
   return (
     <section className="home-hero">
       <div className="wrap">
         <p className="eyebrow reveal">Astronomy for everyone</p>
-        <h1 className="hero-title glow-text reveal">{t({ zh: '星谱', en: 'Stellar Spectrum' })}</h1>
-        <p className="hero-sub reveal">{t({ zh: 'Stellar Spectrum', en: '星谱' })}</p>
-        <p className="hero-lead reveal">
+        <p className="hero-lead reveal" style={{ marginTop: 8 }}>
           {t({
             zh: '从太阳系出发，穿过彗星与小行星，回到 138 亿年前的宇宙起点。',
             en: 'Start in our Solar System, fly past comets and asteroids, and travel back 13.8 billion years to the dawn of the universe.',
@@ -22,7 +21,7 @@ export function HomeHero() {
         </p>
 
         <nav className="topic-row" aria-label={t({ zh: '科普栏目', en: 'Topics' })}>
-          {TOPICS.map((topic, i) => (
+          {featured.map((topic, i) => (
             <Link
               key={topic.id}
               href={topic.href}

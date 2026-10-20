@@ -24,6 +24,10 @@ export const EMOJI = {
   rocket: { src: fluent('Rocket'), native: '🚀' },
   memo: { src: fluent('Memo'), native: '📝' },
   telescope: { src: fluent('Telescope'), native: '🔭' },
+  nebula: { src: fluent('Sparkles'), native: '✨' },
+  camera: { src: fluent('Camera'), native: '📷' },
+  sparkles: { src: fluent('Sparkles'), native: '✨' },
+  night: { src: fluent('Night with stars'), native: '🌃' },
 } as const
 
 export type EmojiKey = keyof typeof EMOJI
@@ -47,6 +51,8 @@ export type Topic = {
   emoji: EmojiKey
   title: L
   desc: L
+  /** If true, show on home page's category row (the rest are header-only nav). */
+  featured?: boolean
 }
 
 export const TOPICS: Topic[] = [
@@ -54,6 +60,7 @@ export const TOPICS: Topic[] = [
     id: 'solar',
     href: '/solar-system',
     emoji: 'saturn',
+    featured: false,
     title: { zh: '太阳系', en: 'Solar System' },
     desc: { zh: '3D 俯瞰太阳与八大行星', en: 'A 3D tour of the Sun and eight planets' },
   },
@@ -61,6 +68,7 @@ export const TOPICS: Topic[] = [
     id: 'small',
     href: '/small-bodies',
     emoji: 'comet',
+    featured: false,
     title: { zh: '小天体', en: 'Small Bodies' },
     desc: { zh: '彗星、小行星、卫星与流星体', en: 'Comets, asteroids, moons and meteoroids' },
   },
@@ -68,6 +76,7 @@ export const TOPICS: Topic[] = [
     id: 'story',
     href: '/universe',
     emoji: 'galaxy',
+    featured: false,
     title: { zh: '宇宙的故事', en: 'Story of the Universe' },
     desc: { zh: '从 138 亿年前讲起', en: 'Starting 13.8 billion years ago' },
   },
@@ -75,8 +84,33 @@ export const TOPICS: Topic[] = [
     id: 'quiz',
     href: '/quiz',
     emoji: 'quiz',
+    featured: false,
     title: { zh: '问答', en: 'Quiz' },
     desc: { zh: '答题挑战与排行榜', en: 'Test yourself and top the board' },
+  },
+  {
+    id: 'deep-sky',
+    href: '/deep-sky',
+    emoji: 'camera',
+    featured: true,
+    title: { zh: '深空摄影', en: 'Deep-Sky Photography' },
+    desc: { zh: '哈勃/韦伯视觉奇观，沉浸式美术馆', en: 'Hubble/JWST wonders, an immersive gallery' },
+  },
+  {
+    id: 'star-life',
+    href: '/star-life',
+    emoji: 'star',
+    featured: true,
+    title: { zh: '星的一生', en: 'Life of Stars' },
+    desc: { zh: '宇宙的一生变为星的故事，分叉图动画', en: 'The universe as the story of stars, animated branching' },
+  },
+  {
+    id: 'tonight',
+    href: '/tonight',
+    emoji: 'night',
+    featured: true,
+    title: { zh: '今晚星空', en: 'Tonight\'s Sky' },
+    desc: { zh: '小白向的浪漫观星与天象指南', en: 'A beginner-friendly stargazing & sky guide' },
   },
 ]
 
@@ -614,3 +648,158 @@ export const QUESTIONS: Question[] = [
 ]
 
 export const QUIZ_ROUND = 10
+
+// ---------------------------------------------------------------------------
+// Deep-Sky Photography (Hubble / JWST immersive gallery)
+// ---------------------------------------------------------------------------
+
+export type DeepSkyItem = {
+  id: string
+  title: L
+  source: L
+  caption: L
+  /** Before/after comparison: raw vs processed */
+  beforeLabel: L
+  afterLabel: L
+  beforeImage: string
+  afterImage: string
+}
+
+export const DEEP_SKY_ITEMS: DeepSkyItem[] = [
+  {
+    id: 'southern-ring',
+    title: { zh: '南环星云', en: 'Southern Ring Nebula' },
+    source: { zh: '詹姆斯·韦布空间望远镜', en: 'James Webb Space Telescope' },
+    caption: { zh: '一颗垂死恒星抛出的气体外壳。（内容待补充）', en: 'Gas shells from a dying star. (Content coming soon)' },
+    beforeLabel: { zh: '未加工', en: 'Raw' },
+    afterLabel: { zh: '已加工', en: 'Processed' },
+    beforeImage: '',
+    afterImage: '/featured/1.jpg',
+  },
+  {
+    id: 'pillars',
+    title: { zh: '创生之柱', en: 'Pillars of Creation' },
+    source: { zh: '詹姆斯·韦布空间望远镜', en: 'James Webb Space Telescope' },
+    caption: { zh: '鹰状星云中高耸的气体尘埃柱。（内容待补充）', en: 'Towering gas and dust in the Eagle Nebula. (Content coming soon)' },
+    beforeLabel: { zh: '未加工', en: 'Raw' },
+    afterLabel: { zh: '已加工', en: 'Processed' },
+    beforeImage: '',
+    afterImage: '/featured/2.jpg',
+  },
+  {
+    id: 'westerlund',
+    title: { zh: '韦斯特隆德 2 星团', en: 'Westerlund 2' },
+    source: { zh: '哈勃空间望远镜', en: 'Hubble Space Telescope' },
+    caption: { zh: '年轻的巨型星团照亮周围星云。（内容待补充）', en: 'A young giant cluster lighting its nebula. (Content coming soon)' },
+    beforeLabel: { zh: '未加工', en: 'Raw' },
+    afterLabel: { zh: '已加工', en: 'Processed' },
+    beforeImage: '',
+    afterImage: '/featured/3.jpg',
+  },
+  {
+    id: 'spiral-galaxy',
+    title: { zh: '螺旋星系', en: 'Spiral Galaxy' },
+    source: { zh: '哈勃空间望远镜', en: 'Hubble Space Telescope' },
+    caption: { zh: '数千亿颗恒星沿旋臂旋转。（内容待补充）', en: 'Billions of stars swirling along spiral arms. (Content coming soon)' },
+    beforeLabel: { zh: '未加工', en: 'Raw' },
+    afterLabel: { zh: '已加工', en: 'Processed' },
+    beforeImage: '',
+    afterImage: '/featured/4.jpg',
+  },
+  {
+    id: 'earth-night',
+    title: { zh: '夜晚的地球', en: 'Earth at Night' },
+    source: { zh: '国际空间站', en: 'International Space Station' },
+    caption: { zh: '城市灯火勾勒出大陆轮廓。（内容待补充）', en: 'City lights tracing continents. (Content coming soon)' },
+    beforeLabel: { zh: '未加工', en: 'Raw' },
+    afterLabel: { zh: '已加工', en: 'Processed' },
+    beforeImage: '',
+    afterImage: '/featured/5.jpg',
+  },
+]
+
+// ---------------------------------------------------------------------------
+// Star Life — animated branching diagram
+// ---------------------------------------------------------------------------
+
+export type StarBranchNode = {
+  id: string
+  label: L
+  desc: L
+  /** mass range label */
+  mass: L
+  x: number
+  y: number
+}
+
+export type StarBranchLink = {
+  from: string
+  to: string
+  /** 0 = trunk, 1 = branch */
+  type: number
+}
+
+export const STAR_BRANCH_NODES: StarBranchNode[] = [
+  { id: 'nebula', label: { zh: '星云', en: 'Nebula' }, desc: { zh: '气体尘埃云在引力下收缩。（内容待补充）', en: 'Gas and dust collapse under gravity. (Coming soon)' }, mass: { zh: '—', en: '—' }, x: 50, y: 8 },
+  { id: 'protostar', label: { zh: '原恒星', en: 'Protostar' }, desc: { zh: '收缩的气团升温发光。（内容待补充）', en: 'The collapsing clump heats up. (Coming soon)' }, mass: { zh: '—', en: '—' }, x: 50, y: 24 },
+  { id: 'main-sequence', label: { zh: '主序星', en: 'Main Sequence' }, desc: { zh: '氢聚变成氦的壮年期。（内容待补充）', en: 'Hydrogen fuses to helium — stable prime. (Coming soon)' }, mass: { zh: '—', en: '—' }, x: 50, y: 42 },
+  { id: 'low-branch', label: { zh: '红巨星', en: 'Red Giant' }, desc: { zh: '外层膨胀变冷。（内容待补充）', en: 'Outer layers swell and cool. (Coming soon)' }, mass: { zh: '< 8 M☉', en: '< 8 M☉' }, x: 25, y: 60 },
+  { id: 'high-branch', label: { zh: '红超巨星', en: 'Red Supergiant' }, desc: { zh: '大质量恒星继续聚变。（内容待补充）', en: 'Massive stars fuse heavier elements. (Coming soon)' }, mass: { zh: '≥ 8 M☉', en: '≥ 8 M☉' }, x: 75, y: 60 },
+  { id: 'planetary-nebula', label: { zh: '行星状星云', en: 'Planetary Nebula' }, desc: { zh: '外层被抛出。（内容待补充）', en: 'Outer layers are shed. (Coming soon)' }, mass: { zh: '< 8 M☉', en: '< 8 M☉' }, x: 18, y: 78 },
+  { id: 'white-dwarf', label: { zh: '白矮星', en: 'White Dwarf' }, desc: { zh: '致密残骸缓慢冷却。（内容待补充）', en: 'A dense remnant slowly cools. (Coming soon)' }, mass: { zh: '< 8 M☉', en: '< 8 M☉' }, x: 18, y: 92 },
+  { id: 'supernova', label: { zh: '超新星爆发', en: 'Supernova' }, desc: { zh: '剧烈爆发抛洒重元素。（内容待补充）', en: 'A violent explosion scatters heavy elements. (Coming soon)' }, mass: { zh: '≥ 8 M☉', en: '≥ 8 M☉' }, x: 82, y: 78 },
+  { id: 'neutron-star', label: { zh: '中子星', en: 'Neutron Star' }, desc: { zh: '核心坍缩成极致密天体。（内容待补充）', en: 'The core collapses into an ultra-dense object. (Coming soon)' }, mass: { zh: '8–25 M☉', en: '8–25 M☉' }, x: 72, y: 92 },
+  { id: 'black-hole', label: { zh: '黑洞', en: 'Black Hole' }, desc: { zh: '连光也无法逃脱。（内容待补充）', en: 'Not even light escapes. (Coming soon)' }, mass: { zh: '> 25 M☉', en: '> 25 M☉' }, x: 92, y: 92 },
+]
+
+export const STAR_BRANCH_LINKS: StarBranchLink[] = [
+  { from: 'nebula', to: 'protostar', type: 0 },
+  { from: 'protostar', to: 'main-sequence', type: 0 },
+  { from: 'main-sequence', to: 'low-branch', type: 1 },
+  { from: 'main-sequence', to: 'high-branch', type: 1 },
+  { from: 'low-branch', to: 'planetary-nebula', type: 1 },
+  { from: 'planetary-nebula', to: 'white-dwarf', type: 1 },
+  { from: 'high-branch', to: 'supernova', type: 1 },
+  { from: 'supernova', to: 'neutron-star', type: 1 },
+  { from: 'supernova', to: 'black-hole', type: 1 },
+]
+
+// ---------------------------------------------------------------------------
+// Tonight's Sky — stargazing guide
+// ---------------------------------------------------------------------------
+
+export type SkyEvent = {
+  id: string
+  title: L
+  detail: L
+  /** emoji icon key */
+  emoji: EmojiKey
+}
+
+export type TonightData = {
+  intro: L
+  visiblePlanets: SkyEvent[]
+  moonPhase: L
+  meteorShowers: SkyEvent[]
+  tips: L[]
+}
+
+export const TONIGHT_DATA: TonightData = {
+  intro: {
+    zh: '今晚的星空指南。以下内容为模板，后续会逐步补充具体天象信息。（内容待补充）',
+    en: "Tonight's sky guide. The following is a template — specific sky events will be added over time. (Content coming soon)",
+  },
+  visiblePlanets: [
+    { id: 'p1', title: { zh: '行星 1（待补充）', en: 'Planet 1 (TBD)' }, detail: { zh: '位置与观测时间待补充。', en: 'Position and time to be added.' }, emoji: 'saturn' },
+    { id: 'p2', title: { zh: '行星 2（待补充）', en: 'Planet 2 (TBD)' }, detail: { zh: '位置与观测时间待补充。', en: 'Position and time to be added.' }, emoji: 'mars' },
+  ],
+  moonPhase: { zh: '月相信息待补充。', en: 'Moon phase info to be added.' },
+  meteorShowers: [
+    { id: 'm1', title: { zh: '流星雨（待补充）', en: 'Meteor Shower (TBD)' }, detail: { zh: '辐射点与峰值时间待补充。', en: 'Radiant and peak time to be added.' }, emoji: 'meteoroid' },
+  ],
+  tips: [
+    { zh: '找一个远离城市灯光的地方。', en: 'Find a spot far from city lights.' },
+    { zh: '给眼睛约 20 分钟适应黑暗。', en: 'Give your eyes about 20 minutes to adapt to the dark.' },
+    { zh: '用红光手电筒，避免破坏夜视。', en: 'Use a red flashlight to preserve night vision.' },
+  ],
+}
