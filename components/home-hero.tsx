@@ -12,8 +12,8 @@ export function HomeHero() {
     <section className="home-hero">
       <div className="wrap">
         <p className="eyebrow reveal">Astronomy for everyone</p>
-        <h1 className="hero-title glow-text reveal">星谱</h1>
-        <p className="hero-sub reveal">Stellar Spectrum</p>
+        <h1 className="hero-title glow-text reveal">{t({ zh: '星谱', en: 'Stellar Spectrum' })}</h1>
+        <p className="hero-sub reveal">{t({ zh: 'Stellar Spectrum', en: '星谱' })}</p>
         <p className="hero-lead reveal">
           {t({
             zh: '从太阳系出发，穿过彗星与小行星，回到 138 亿年前的宇宙起点。',

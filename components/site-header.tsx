@@ -13,9 +13,9 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="wrap header-row">
-        <Link href="/" className="brand" aria-label="星谱 Stellar Spectrum">
-          <span className="brand-zh">星谱</span>
-          <span className="brand-en">Stellar Spectrum</span>
+        <Link href="/" className="brand" aria-label={t({ zh: '星谱 Stellar Spectrum', en: 'Stellar Spectrum' })}>
+          <span className="brand-zh">{t({ zh: '星谱', en: 'Stellar' })}</span>
+          <span className="brand-en">{t({ zh: 'Stellar Spectrum', en: 'Spectrum' })}</span>
         </Link>
 
         <nav className="nav" aria-label={t({ zh: '科普栏目', en: 'Topics' })}>

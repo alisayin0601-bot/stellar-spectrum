@@ -94,6 +94,8 @@ button { font-family: inherit; }
   color: transparent;
 }
 .brand-en { font-family: var(--display); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--highlight); }
+:lang(en) .brand-zh { font-size: 19px; letter-spacing: 0.06em; }
+:lang(en) .brand-en { font-size: 11px; letter-spacing: 0.22em; }
 .nav { display: flex; gap: 4px; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
 .nav::-webkit-scrollbar { display: none; }
 .nav-link {
@@ -222,6 +224,8 @@ button { font-family: inherit; }
 .home-hero .eyebrow::after { content: ''; width: 18px; height: 1px; background: currentColor; }
 .hero-title { font-size: clamp(44px, 9vw, 88px); line-height: 1.05; letter-spacing: 0.12em; padding-left: 0.12em; }
 .hero-sub { margin-top: 8px; font-family: var(--display); font-size: clamp(13px, 2vw, 16px); letter-spacing: 0.4em; text-transform: uppercase; color: var(--highlight); }
+:lang(en) .hero-title { letter-spacing: 0.04em; padding-left: 0.04em; font-size: clamp(36px, 7vw, 72px); }
+:lang(en) .hero-sub { letter-spacing: 0.2em; }
 .hero-lead { margin: 18px auto 0; max-width: 520px; color: #c6d2e4; font-size: 15px; }
 
 .topic-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 40px; }
@@ -470,6 +474,140 @@ button { font-family: inherit; }
 .board .pts { margin-left: auto; font-family: var(--display); font-weight: 700; color: var(--highlight); }
 .board-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
 .board-head .card-title { margin: 0; }
+
+/* ---------- Ambient music toggle ---------- */
+.ambient-toggle {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(11, 16, 32, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: background 0.25s, border-color 0.25s, transform 0.2s;
+}
+.ambient-toggle:hover { background: rgba(126, 184, 255, 0.14); border-color: rgba(126, 184, 255, 0.45); transform: translateY(-2px); }
+.ambient-toggle:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+.ambient-toggle.is-armed {
+  border-color: rgba(126, 184, 255, 0.55);
+  animation: ambient-pulse 2.4s ease-in-out infinite;
+}
+@keyframes ambient-pulse {
+  0%, 100% { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(126, 184, 255, 0.5); }
+  50% { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 0 10px rgba(126, 184, 255, 0); }
+}
+.ambient-icon { display: grid; place-items: center; color: var(--primary); }
+.ambient-toggle.is-playing .ambient-icon { color: var(--highlight); }
+.ambient-bars { display: inline-flex; align-items: flex-end; gap: 3px; height: 16px; }
+.ambient-bars span {
+  width: 3px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--primary), var(--violet));
+  opacity: 0.5;
+  transform-origin: bottom;
+}
+.ambient-toggle:not(.is-playing) .ambient-bars { display: none; }
+.ambient-toggle.is-playing .ambient-bars span { animation: eq 1.1s ease-in-out infinite; }
+.ambient-toggle.is-playing .ambient-bars span:nth-child(2) { animation-delay: 0.18s; }
+.ambient-toggle.is-playing .ambient-bars span:nth-child(3) { animation-delay: 0.36s; }
+.ambient-toggle.is-playing .ambient-bars span:nth-child(4) { animation-delay: 0.54s; }
+@keyframes eq { 0%, 100% { height: 4px; opacity: 0.5; } 50% { height: 16px; opacity: 1; } }
+
+/* ---------- Splash intro ---------- */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  transition: opacity 0.9s ease, visibility 0.9s ease;
+}
+.splash.is-leaving { opacity: 0; visibility: hidden; }
+.splash-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1100px 700px at 50% 38%, rgba(60, 110, 200, 0.18), transparent 70%),
+    radial-gradient(800px 600px at 70% 80%, rgba(120, 80, 200, 0.14), transparent 70%),
+    linear-gradient(180deg, #060912, #0b1020 60%, #050810);
+}
+.splash-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 24px;
+  animation: splash-in 1s ease both;
+}
+@keyframes splash-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.splash-eyebrow {
+  font-family: var(--display);
+  font-size: 12px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--highlight);
+  margin: 0 0 18px;
+}
+.splash-title {
+  font-family: var(--display);
+  font-size: clamp(48px, 11vw, 120px);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.05;
+  margin: 0;
+}
+:lang(en) .splash-title { letter-spacing: 0.04em; }
+.splash-sub {
+  margin: 10px 0 38px;
+  font-family: var(--display);
+  font-size: clamp(13px, 2.2vw, 18px);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+:lang(en) .splash-sub { letter-spacing: 0.22em; }
+.splash-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(126, 184, 255, 0.5);
+  background: linear-gradient(180deg, rgba(126, 184, 255, 0.18), rgba(126, 184, 255, 0.06));
+  color: #eaf2ff;
+  font-family: var(--display);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 0 12px 40px rgba(40, 90, 180, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+}
+.splash-cta:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, rgba(126, 184, 255, 0.3), rgba(126, 184, 255, 0.12));
+  box-shadow: 0 16px 50px rgba(40, 90, 180, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+.splash-cta:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
+.splash-cta svg { transition: transform 0.22s ease; }
+.splash-cta:hover svg { transform: translateX(4px); }
+.splash-hint {
+  margin: 22px 0 0;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  opacity: 0.7;
+}
 
 /* ---------- Footer ---------- */
 .site-footer { margin-top: 40px; padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }

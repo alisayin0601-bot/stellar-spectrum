@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Space_Grotesk } from 'next/font/google'
 import { LangProvider } from '@/lib/i18n'
 import { Starfield } from '@/components/starfield'
+import { AmbientMusic } from '@/components/ambient-music'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import './globals.css'
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main>{children}</main>
             <SiteFooter />
           </div>
+          <AmbientMusic />
         </LangProvider>
       </body>
     </html>
