@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { useLang } from '@/lib/i18n'
 import { TOPICS } from '@/lib/data'
 import { Emoji } from './emoji'
-import EarthGlobe from './earth-globe'
 
 export function HomeHero() {
   const { t } = useLang()
@@ -12,7 +11,6 @@ export function HomeHero() {
 
   return (
     <section className="home-hero">
-      <EarthGlobe />
       <div className="wrap">
         <p className="eyebrow reveal">Astronomy for everyone</p>
         <p className="hero-lead reveal" style={{ marginTop: 8 }}>
