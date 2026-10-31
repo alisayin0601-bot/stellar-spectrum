@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 import { useLang, type L } from '@/lib/i18n'
 
 export function PageIntro({ eyebrow, title, lead, backHref = '/', backLabel }: { eyebrow: string; title: L; lead?: L; backHref?: string; backLabel?: L }) {
@@ -8,7 +8,7 @@ export function PageIntro({ eyebrow, title, lead, backHref = '/', backLabel }: {
   return (
     <header className="page-intro">
       <div className="wrap">
-        <Link href={backHref} className="btn btn-ghost btn-sm back-link">
+        <Link to={backHref} className="btn btn-ghost btn-sm back-link">
           ← {t(backLabel ?? { zh: '返回首页', en: 'Home' })}
         </Link>
         <p className="eyebrow">{eyebrow}</p>

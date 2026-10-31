@@ -1,19 +1,18 @@
 'use client'
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { Link, useLocation } from 'react-router-dom'
 import { useLang } from '@/lib/i18n'
 import { TOPICS } from '@/lib/data'
 import { Emoji } from './emoji'
 
 export function SiteHeader() {
-  const pathname = usePathname()
+  const { pathname } = useLocation()
   const { lang, setLang, t } = useLang()
 
   return (
     <header className="site-header">
       <div className="wrap header-row">
-        <Link href="/" className="brand" aria-label={t({ zh: '星谱 Stellar Spectrum', en: 'Stellar Spectrum' })}>
+        <Link to="/" className="brand" aria-label={t({ zh: '星谱 Stellar Spectrum', en: 'Stellar Spectrum' })}>
           <span className="brand-zh">{t({ zh: '星谱', en: 'Stellar' })}</span>
           <span className="brand-en">{t({ zh: 'Stellar Spectrum', en: 'Spectrum' })}</span>
         </Link>
@@ -22,7 +21,7 @@ export function SiteHeader() {
           {TOPICS.map((topic) => (
             <Link
               key={topic.id}
-              href={topic.href}
+              to={topic.href}
               className="nav-link"
               aria-current={pathname.startsWith(topic.href) ? 'page' : undefined}
             >

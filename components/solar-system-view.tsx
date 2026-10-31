@@ -1,15 +1,12 @@
 'use client'
 
-import dynamic from 'next/dynamic'
+import { lazy, Suspense } from 'react'
 import { useLang } from '@/lib/i18n'
 import { SOLAR_BODIES } from '@/lib/data'
 import { BodyGrid } from './body-grid'
 import { PageIntro } from './page-intro'
 
-const SolarSystem3D = dynamic(() => import('./solar-system-3d'), {
-  ssr: false,
-  loading: () => <div className="solar-loading">Loading…</div>,
-})
+const SolarSystem3D = lazy(() => import('./solar-system-3d'))
 
 export function SolarSystemView() {
   const { t } = useLang()
@@ -27,7 +24,9 @@ export function SolarSystemView() {
       />
       <div className="wrap">
         <div className="solar-stage">
-          <SolarSystem3D labels={labels} basePath="/solar-system" />
+          <Suspense fallback={<div className="solar-loading">Loading…</div>}>
+            <SolarSystem3D labels={labels} basePath="/solar-system" />
+          </Suspense>
           <p className="solar-hint">{t({ zh: '悬停查看名称 · 点击查看详情 · 拖动旋转', en: 'Hover for names · Click for details · Drag to rotate' })}</p>
         </div>
       </div>

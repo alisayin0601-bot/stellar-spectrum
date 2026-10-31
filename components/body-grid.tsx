@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 import { useLang } from '@/lib/i18n'
 import type { Body } from '@/lib/data'
 import { Emoji } from './emoji'
@@ -19,7 +19,7 @@ export function BodyGrid({ bodies, basePath }: { bodies: Body[]; basePath: strin
             </div>
           </div>
           <p className="body-tagline">{t(body.tagline)}</p>
-          <Link href={`${basePath}/${body.id}`} className="btn btn-ghost btn-more" aria-label={`${t({ zh: '更多', en: 'More' })}: ${t(body.name)}`}>
+          <Link to={`${basePath}/${body.id}`} className="btn btn-ghost btn-more" aria-label={`${t({ zh: '更多', en: 'More' })}: ${t(body.name)}`}>
             {t({ zh: '更多', en: 'More' })} →
           </Link>
         </li>

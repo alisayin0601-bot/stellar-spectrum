@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 import { useLang, type L } from '@/lib/i18n'
 import type { Body, LifeStage } from '@/lib/data'
 import { Emoji } from './emoji'
@@ -19,7 +19,7 @@ export function BodyDetail({ body, backHref, backLabel, prev, next }: Props) {
   return (
     <article className="section" style={{ paddingTop: 48 }}>
       <div className="wrap" style={{ maxWidth: 900 }}>
-        <Link href={backHref} className="btn btn-ghost btn-sm back-link">
+        <Link to={backHref} className="btn btn-ghost btn-sm back-link">
           ← {t(backLabel)}
         </Link>
 
@@ -46,8 +46,7 @@ export function BodyDetail({ body, backHref, backLabel, prev, next }: Props) {
         {body.images.length > 0 && (
           <div className="gallery">
             {body.images.map((src, i) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img key={src} src={src} alt={`${t(body.name)} ${i + 1}`} loading="lazy" />
+                            <img key={src} src={src} alt={`${t(body.name)} ${i + 1}`} loading="lazy" />
             ))}
           </div>
         )}
@@ -72,9 +71,9 @@ export function BodyDetail({ body, backHref, backLabel, prev, next }: Props) {
         {(prev || next) && (
           <nav className="detail-nav" aria-label={t({ zh: '切换天体', en: 'Browse' })}>
             {prev ? (
-              <Link href={`${backHref}/${prev.id}`} className="btn btn-ghost">← {t(prev.name)}</Link>
+              <Link to={`${backHref}/${prev.id}`} className="btn btn-ghost">← {t(prev.name)}</Link>
             ) : <span />}
-            {next && <Link href={`${backHref}/${next.id}`} className="btn btn-primary">{t(next.name)} →</Link>}
+            {next && <Link to={`${backHref}/${next.id}`} className="btn btn-primary">{t(next.name)} →</Link>}
           </nav>
         )}
       </div>

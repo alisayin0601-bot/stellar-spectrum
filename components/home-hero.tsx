@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 import { useLang } from '@/lib/i18n'
 import { TOPICS } from '@/lib/data'
 import { Emoji } from './emoji'
@@ -24,7 +24,7 @@ export function HomeHero() {
           {featured.map((topic, i) => (
             <Link
               key={topic.id}
-              href={topic.href}
+              to={topic.href}
               className="glass glass-glow topic-card reveal"
               style={{ animationDelay: `${0.1 + i * 0.08}s` }}
             >

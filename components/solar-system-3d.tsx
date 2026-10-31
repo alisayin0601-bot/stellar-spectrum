@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useRef, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useNavigate } from 'react-router-dom'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Html, OrbitControls, Stars } from '@react-three/drei'
 import * as THREE from 'three'
@@ -123,11 +123,11 @@ function Sun({ label, hovered, onHover, onSelect }: { label: string; hovered: bo
 }
 
 export default function SolarSystem3D({ labels, basePath }: { labels: Labels; basePath: string }) {
-  const router = useRouter()
+  const navigate = useNavigate()
   const [hovered, setHovered] = useState<string | null>(null)
   const select = (id: string) => {
     document.body.style.cursor = ''
-    router.push(`${basePath}/${id}`)
+    navigate(`${basePath}/${id}`)
   }
 
   return (
