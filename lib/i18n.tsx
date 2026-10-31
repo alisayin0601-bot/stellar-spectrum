@@ -16,7 +16,7 @@ const LangContext = createContext<LangContextValue | null>(null)
 const STORAGE_KEY = 'stellar-lang'
 
 export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>('zh')
+  const [lang, setLangState] = useState<Lang>('en')
 
   useEffect(() => {
     const saved = window.localStorage.getItem(STORAGE_KEY)

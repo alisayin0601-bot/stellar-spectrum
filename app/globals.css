@@ -219,7 +219,10 @@ button { font-family: inherit; }
 .emoji-native { display: inline-grid; place-items: center; line-height: 1; }
 
 /* ---------- Home hero ---------- */
-.home-hero { padding: 64px 0 24px; text-align: center; }
+.home-hero { position: relative; overflow: hidden; padding: 64px 0 24px; text-align: center; }
+.home-hero .wrap { position: relative; z-index: 1; }
+.earth-globe { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.earth-globe canvas { width: 100% !important; height: 100% !important; }
 .home-hero .eyebrow { justify-content: center; }
 .home-hero .eyebrow::after { content: ''; width: 18px; height: 1px; background: currentColor; }
 .hero-title { font-size: clamp(44px, 9vw, 88px); line-height: 1.05; letter-spacing: 0.12em; padding-left: 0.12em; }
@@ -554,7 +557,7 @@ button { font-family: inherit; }
   margin: 0;
   padding: 0 0.1em 0.12em 0.05em;
   font-family: var(--display);
-  font-size: clamp(48px, 11vw, 120px);
+  font-size: clamp(32px, 6vw, 64px);
   font-style: italic;
   font-weight: 700;
   letter-spacing: 0.04em;

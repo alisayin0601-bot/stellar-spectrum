@@ -1,7 +1,9 @@
 import { PageIntro } from '@/components/page-intro'
 import { TonightView } from '@/components/tonight-view'
+import { useDocumentTitle } from '../use-document-title'
 
-export default function TonightPage() {
+export function TonightPage() {
+  useDocumentTitle("今晚星空 Tonight's Sky · 星谱")
   return (
     <>
       <PageIntro

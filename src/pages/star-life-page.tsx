@@ -1,7 +1,9 @@
 import { PageIntro } from '@/components/page-intro'
 import { StarLifeView } from '@/components/star-life-view'
+import { useDocumentTitle } from '../use-document-title'
 
-export default function StarLifePage() {
+export function StarLifePage() {
+  useDocumentTitle('星的一生 Life of Stars · 星谱')
   return (
     <>
       <PageIntro

@@ -1,7 +1,9 @@
 import { PageIntro } from '@/components/page-intro'
 import { DeepSkyView } from '@/components/deep-sky-view'
+import { useDocumentTitle } from '../use-document-title'
 
-export default function DeepSkyPage() {
+export function DeepSkyPage() {
+  useDocumentTitle('深空摄影 Deep-Sky Photography · 星谱')
   return (
     <>
       <PageIntro
