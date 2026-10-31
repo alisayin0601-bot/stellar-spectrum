@@ -550,64 +550,29 @@ button { font-family: inherit; }
   animation: splash-in 1s ease both;
 }
 @keyframes splash-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-.splash-eyebrow {
-  font-family: var(--display);
-  font-size: 12px;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: var(--highlight);
-  margin: 0 0 18px;
-}
 .splash-title {
+  margin: 0;
+  padding: 0 0.1em 0.12em 0.05em;
   font-family: var(--display);
   font-size: clamp(48px, 11vw, 120px);
+  font-style: italic;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  line-height: 1.05;
-  margin: 0;
-}
-:lang(en) .splash-title { letter-spacing: 0.04em; }
-.splash-sub {
-  margin: 10px 0 38px;
-  font-family: var(--display);
-  font-size: clamp(13px, 2.2vw, 18px);
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-:lang(en) .splash-sub { letter-spacing: 0.22em; }
-.splash-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 34px;
-  border-radius: 999px;
-  border: 1px solid rgba(126, 184, 255, 0.5);
-  background: linear-gradient(180deg, rgba(126, 184, 255, 0.18), rgba(126, 184, 255, 0.06));
-  color: #eaf2ff;
-  font-family: var(--display);
-  font-size: 16px;
-  font-weight: 600;
   letter-spacing: 0.04em;
-  cursor: pointer;
-  box-shadow: 0 12px 40px rgba(40, 90, 180, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+  line-height: 1.2;
+  animation: splash-wipe 2.4s cubic-bezier(0.65, 0, 0.35, 1) 3s both;
 }
-.splash-cta:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(180deg, rgba(126, 184, 255, 0.3), rgba(126, 184, 255, 0.12));
-  box-shadow: 0 16px 50px rgba(40, 90, 180, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+@keyframes splash-wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+.splash-prompt {
+  margin: 40px 0 0;
+  font-family: var(--display);
+  font-size: clamp(14px, 2.2vw, 18px);
+  font-style: italic;
+  letter-spacing: 0.08em;
+  color: var(--highlight);
+  animation: splash-fade 1.2s ease 7.4s both;
 }
-.splash-cta:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
-.splash-cta svg { transition: transform 0.22s ease; }
-.splash-cta:hover svg { transform: translateX(4px); }
-.splash-hint {
-  margin: 22px 0 0;
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-  opacity: 0.7;
-}
+@keyframes splash-fade { from { opacity: 0; } to { opacity: 1; } }
+
 
 /* ---------- Footer ---------- */
 .site-footer { margin-top: 40px; padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
